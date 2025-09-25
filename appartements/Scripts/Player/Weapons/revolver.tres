@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="weapon_resource" load_steps=2 format=3 uid="uid://dwbopyo1b62r6"]
+
+[ext_resource type="Script" uid="uid://dyh2dpsydft8n" path="res://Scripts/Player/Weapons/weapon_resource.gd" id="1_0g4yy"]
+
+[resource]
+script = ExtResource("1_0g4yy")
+id = 0
+gun_damage = 20.0
+bullet_count = 6
+recoil = 0.0
+weight = 0.0
+metadata/_custom_type_script = "uid://dyh2dpsydft8n"

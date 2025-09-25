@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqyog0fjl1j4m"]
+
+[ext_resource type="Script" uid="uid://ca1tpidplbngo" path="res://Scripts/Player/UI/inventory.gd" id="1_fby3h"]
+[ext_resource type="PackedScene" uid="uid://cous51fte1ill" path="res://Prefabs/UI/Player/Inventory/item_container.tscn" id="1_nmrsj"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_right = 139.0
+offset_bottom = 650.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 135
+script = ExtResource("1_fby3h")
+
+[node name="Item_container" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nmrsj")]
+layout_mode = 2
+
+[node name="Item_container2" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nmrsj")]
+layout_mode = 2
+
+[node name="Item_container3" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nmrsj")]
+layout_mode = 2
+
+[node name="Item_container4" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nmrsj")]
+layout_mode = 2
+
+[node name="Item_container5" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nmrsj")]
+layout_mode = 2
+
+[node name="Item_container6" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nmrsj")]
+layout_mode = 2
+
+[node name="Item_container7" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nmrsj")]
+layout_mode = 2
+
+[node name="Item_container8" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nmrsj")]
+layout_mode = 2

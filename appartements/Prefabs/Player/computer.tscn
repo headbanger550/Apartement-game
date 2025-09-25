@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://vk56ihci0tb"]
+
+[ext_resource type="Script" uid="uid://d03jlxytsd3dq" path="res://Scripts/Player/computer.gd" id="1_y2yds"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gng8j"]
+metallic = 1.0
+metallic_specular = 0.83
+clearcoat_enabled = true
+clearcoat_roughness = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_y2yds"]
+material = SubResource("StandardMaterial3D_gng8j")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gng8j"]
+size = Vector3(1.00537, 1.02917, 0.482941)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gng8j"]
+viewport_path = NodePath("Screen/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2yds"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_gng8j")
+
+[sub_resource type="QuadMesh" id="QuadMesh_f4txj"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_y2yds")
+
+[node name="Computer" type="StaticBody3D" groups=["computer"]]
+script = ExtResource("1_y2yds")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.447165, 0, 0, 0)
+mesh = SubResource("BoxMesh_y2yds")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00268555, 0.0145874, -0.0128326)
+shape = SubResource("BoxShape3D_gng8j")
+
+[node name="Screen" type="Node3D" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="Screen"]
+disable_3d = true
+
+[node name="Control" type="Control" parent="Screen/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.05499
+offset_top = 3.405
+offset_right = 5.05493
+offset_bottom = 3.40503
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+mouse_filter = 1
+
+[node name="TextEdit" type="TextEdit" parent="Screen/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "lol lmao"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Screen"]
+transform = Transform3D(0.82214, 0, 0, 0, 0.82214, 0, 0, 0, 0.82214, 0, 0, 0.249204)
+mesh = SubResource("QuadMesh_f4txj")
+
+[node name="Camera position" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.836538)
+
+[connection signal="gui_input" from="Screen/SubViewport/Control/TextEdit" to="." method="_on_text_edit_gui_input"]
