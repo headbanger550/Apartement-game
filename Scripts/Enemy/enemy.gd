@@ -44,7 +44,8 @@ func _process(delta: float) -> void:
 				active = true
 	
 	if eyes_ray.is_colliding():
-		print(eyes_ray.get_collider())
+		#print(eyes_ray.get_collider())
+		pass
 	
 	if health <= 0:
 		print("dead")

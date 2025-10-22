@@ -41,34 +41,44 @@ var can_shoot = true
 var tweened = false
 
 @export var bullet_positions : Array[Node3D]
-var last_bullet_id : int
+var current_bullet = 0
+var current_bullet_rel = 0
 var last_bullet_id_in_world : int
 
 @onready var shot_point = $"Model/Shot point"
 @onready var anim = $AnimationPlayer
 @onready var ray = $"../../RayCast3D"
+@onready var barrel_ray = $"Model/bfr revolver/Gun Frame/Barrel/Barrel_ray"
+@onready var ejector_ray = $"Model/bfr revolver/Gun Frame/Barrel/Ejector handle/Ejector/RayCast3D"
 
 @onready var cam = $"../.."
 @onready var initial_rot = cam.rotation_degrees as Vector3
 @onready var head = $"../../.."
+
+@onready var bullet_pos_parent = $"Model/bfr revolver/Bullet positions"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	bullet_num = start_bullets
 	start_pos = position
 	for i in start_bullets:
-		spawn_bullet(whole_bullet_rev, bullet_parent, bullet_positions[i].position * 100)
-		bullets.append(bullet_parent.get_child(i))
+		spawn_bullet(whole_bullet_rev, bullet_parent, bullet_positions[i].position * 100, i)
+		#bullets.append(bullet_parent.get_child(i - 1))
+	print(bullets)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	bullet_pos_parent.rotation = bullet_parent.get_parent().rotation
+	
 	time += delta
 	trauma = max(trauma - delta * trauma_reduction_rate, 0.0)
 	
 	head.rotation_degrees.x = initial_rot.x + max_x * get_shake_intensity() * get_noise_from_seed(0)
 	cam.rotation_degrees.y = initial_rot.y + max_y * get_shake_intensity() * get_noise_from_seed(1)
 	cam.rotation_degrees.z = initial_rot.z + max_z * get_shake_intensity() * get_noise_from_seed(2)
-			
+	
+	
+				
 func fire():
 	spawn_particle(muzzle_flash, shot_point.global_position, shot_point.global_rotation)
 	spawn_particle(dust_burst, shot_point.global_position, shot_point.global_rotation)
@@ -77,7 +87,6 @@ func fire():
 	if ray.is_colliding():
 		if ray.get_collider().is_in_group("enemy"):
 			var got_enemy = ray.get_collider()
-			#if (got_enemy.frequency >= weapon_frequency - 3 && got_enemy.frequency <= weapon_frequency + 3):
 			got_enemy.damage_enemy(got_enemy.health)
 		spawn_particle(impact_spark, ray.get_collision_point(), Vector3(0, 0, 0))
 		spawn_particle(dust_burst, ray.get_collision_point(), Vector3(0, 0, 0))
@@ -110,18 +119,19 @@ func replace_bullet(ref_bullet : Resource, parent : Node3D, bullet_pos : Vector3
 	bullets[weap_res.bullet_count - bullet_num] = inst_bullet
 	return inst_bullet
 	
-func spawn_bullet(ref_bullet : Resource, parent : Node3D, bullet_pos : Vector3):#, bullet_rot : Vector3, bullet_size : Vector3):
+func spawn_bullet(ref_bullet : Resource, parent : Node3D, bullet_pos : Vector3, index : int):#, bullet_rot : Vector3, bullet_size : Vector3):
 	var inst_bullet = ref_bullet.instantiate()
 	parent.add_child(inst_bullet)
 	inst_bullet.position = bullet_pos
-	#inst_bullet.rotation = bullet_rot
-	#inst_bullet.scale = bullet_size
-	bullets.insert(last_bullet_id, inst_bullet)
-	#print(bullets[last_bullet_id])
+	bullets.insert(index, inst_bullet)
+
+func remove_bullet(index : int):
+	var fired_bullet = bullets.pop_at(index)
+	fired_bullet.queue_free()
 	
 func rotate_cylinder():
 	var cylinder = bullet_parent.get_parent()
-	var new_rot = cylinder.rotation_degrees.z - 60.0
+	var new_rot = cylinder.rotation_degrees.z + 60.0
 	var rot_tween = create_tween()
 	print(new_rot)
 	rot_tween.tween_property(cylinder, "rotation:z", deg_to_rad(new_rot), 0.1)

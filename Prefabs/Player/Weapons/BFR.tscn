@@ -488,6 +488,10 @@ transform = Transform3D(0.292821, 0, 0, 0, -8.75971e-07, 1.07591, 0, -7.34818, -
 mesh = SubResource("ArrayMesh_vgxd7")
 skeleton = NodePath("")
 
+[node name="Barrel_ray" type="RayCast3D" parent="Model/bfr revolver/Gun Frame/Barrel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.022404194, 0.015267774, -0.56679255)
+target_position = Vector3(0, 0, 1)
+
 [node name="Cylinder holder" type="MeshInstance3D" parent="Model/bfr revolver/Gun Frame"]
 transform = Transform3D(2.4478, 0, 0, 0, -4.53002e-07, -4.03245, 0, 3.80006, -4.80705e-07, -2.17269e-17, -0.0573967, -0.0545502)
 mesh = SubResource("ArrayMesh_mlg6d")
@@ -525,6 +529,6 @@ mesh = SubResource("ArrayMesh_1nypj")
 skeleton = NodePath("")
 
 [node name="Shot point" type="Node3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.881289, -3.8769)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.230393, -13.145067)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

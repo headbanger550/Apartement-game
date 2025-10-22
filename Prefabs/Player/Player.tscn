@@ -61,6 +61,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/bfr revolver/Cylinder:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_hnr8y"]
 resource_name = "aim"
@@ -75,7 +87,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1998, 0.3996),
 "transitions": PackedFloat32Array(1, 1, 2.14355),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.685, 0.085, 0), Vector3(-1.74, 0.71, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-0.685, 0.085, 0), Vector3(-6.43, 4.945, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -101,10 +113,10 @@ tracks/0/path = NodePath("Model:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.36),
+"times": PackedFloat32Array(0, 0.3, 0.35999998),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-1.92, 1.02, 2.51), Vector3(-1.92, 1.02, 2.51)]
+"values": [Vector3(0, 0, 0), Vector3(-8.625, 3.29, 6.845), Vector3(-8.625, 3.29, 6.845)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -142,6 +154,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, -0.392699), Vector3(0, 0, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/bfr revolver/Cylinder:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.45999998),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -1.0471976)]
+}
 
 [sub_resource type="Animation" id="Animation_ip1bf"]
 resource_name = "shoot"
@@ -157,7 +181,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.02, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-1.74, 0.71, 0), Vector3(-1.4, 0.71, 1.165), Vector3(-1.74, 0.71, 0)]
+"values": [Vector3(-6.43, 4.945, 0), Vector3(-1.4, 0.71, 1.165), Vector3(-6.43, 4.945, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
