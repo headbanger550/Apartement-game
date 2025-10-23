@@ -172,19 +172,6 @@ func _physics_process(delta):
 		if not is_on_floor():
 			velocity += get_gravity() * delta
 			cam_offset = minf(velocity.y ,2.0)
-		
-		if !Input.is_action_pressed("check_frequency"):
-			if Input.is_action_pressed("lean_right"):
-				lean_multiplier = -1
-				rotate_camera(delta)	
-			if Input.is_action_pressed("lean_left"):
-				lean_multiplier = 1
-				rotate_camera(delta)	
-				
-			elif !Input.is_action_pressed("lean_right") and !Input.is_action_pressed("lean_left"):
-				var tween = get_tree().create_tween()
-				tween.tween_property(head, "rotation:z", 0.0, 0.1)
-				#head.rotation.z = deg_to_rad(lerp_angle(head.rotation.z, 0, delta * 10))
 			
 		if Input.is_action_pressed("sprint"):
 			current_speed = running_speed

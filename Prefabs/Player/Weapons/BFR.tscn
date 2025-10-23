@@ -491,6 +491,7 @@ skeleton = NodePath("")
 [node name="Barrel_ray" type="RayCast3D" parent="Model/bfr revolver/Gun Frame/Barrel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.022404194, 0.015267774, -0.56679255)
 target_position = Vector3(0, 0, 1)
+collide_with_areas = true
 
 [node name="Cylinder holder" type="MeshInstance3D" parent="Model/bfr revolver/Gun Frame"]
 transform = Transform3D(2.4478, 0, 0, 0, -4.53002e-07, -4.03245, 0, 3.80006, -4.80705e-07, -2.17269e-17, -0.0573967, -0.0545502)

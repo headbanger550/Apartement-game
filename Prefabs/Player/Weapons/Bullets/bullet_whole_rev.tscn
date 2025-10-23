@@ -75,7 +75,7 @@ shadow_mesh = SubResource("ArrayMesh_l2obv")
 [sub_resource type="BoxShape3D" id="BoxShape3D_0jgso"]
 size = Vector3(0.416031, 0.407124, 2.65332)
 
-[node name="Bullet_whole" type="Area3D"]
+[node name="Bullet_whole" type="Area3D" groups=["not_fired"]]
 transform = Transform3D(1, 1.14922e-29, -8.47033e-22, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Bullet (whole)" type="MeshInstance3D" parent="."]

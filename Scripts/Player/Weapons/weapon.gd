@@ -77,8 +77,41 @@ func _process(delta: float) -> void:
 	cam.rotation_degrees.y = initial_rot.y + max_y * get_shake_intensity() * get_noise_from_seed(1)
 	cam.rotation_degrees.z = initial_rot.z + max_z * get_shake_intensity() * get_noise_from_seed(2)
 	
-	
-				
+	if Input.is_action_pressed("aim") and !aiming and !reloading:
+		anim.play("aim")
+		aiming = true
+	elif Input.is_action_just_released("aim") and !reloading:
+		anim.play_backwards("aim")
+		aiming = false
+		
+	if Input.is_action_just_pressed("reload") and !reloading:
+		anim.play("reload")
+		reloading = true
+	elif Input.is_action_just_released("reload"):
+		anim.play_backwards("reload")
+		reloading = false
+		
+	if Input.is_action_just_pressed("shoot") and aiming:
+		if barrel_ray.is_colliding():
+			if barrel_ray.get_collider().is_in_group("not_fired"):
+				anim.play("shoot")
+				var bullet_id = bullets.find(barrel_ray.get_collider())
+				remove_bullet(bullet_id)
+				spawn_bullet(shot_bullet_rev, bullet_parent, bullet_positions[bullet_id].position * 100, bullet_id)
+				rotate_cylinder(1)
+			if barrel_ray.get_collider().is_in_group("fired"):
+				rotate_cylinder(1)
+	if reloading:
+		if Input.is_action_just_pressed("aim"):
+			rotate_cylinder(-1)
+		if Input.is_action_just_pressed("shoot"):
+			rotate_cylinder(1)
+		if Input.is_action_just_pressed("remove_bullet"):
+			if ejector_ray.is_colliding():
+				var bullet_id = bullets.find(ejector_ray.get_collider())
+				remove_bullet(bullet_id)
+				spawn_bullet(whole_bullet_rev, bullet_parent, bullet_positions[bullet_id].position * 100, bullet_id)
+		
 func fire():
 	spawn_particle(muzzle_flash, shot_point.global_position, shot_point.global_rotation)
 	spawn_particle(dust_burst, shot_point.global_position, shot_point.global_rotation)
@@ -129,9 +162,9 @@ func remove_bullet(index : int):
 	var fired_bullet = bullets.pop_at(index)
 	fired_bullet.queue_free()
 	
-func rotate_cylinder():
+func rotate_cylinder(mod : int):
 	var cylinder = bullet_parent.get_parent()
-	var new_rot = cylinder.rotation_degrees.z + 60.0
+	var new_rot = cylinder.rotation_degrees.z + (60.0 * mod)
 	var rot_tween = create_tween()
 	print(new_rot)
 	rot_tween.tween_property(cylinder, "rotation:z", deg_to_rad(new_rot), 0.1)
