@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="interactable" load_steps=2 format=3 uid="uid://dlwt2kenmj41r"]
-
-[ext_resource type="Script" uid="uid://hydp8bd62iyq" path="res://Scripts/World/Interactables/interactable_resource.gd" id="1_vuly7"]
-
-[resource]
-script = ExtResource("1_vuly7")
-id = 0
-name = "Light bulb"
-metadata/_custom_type_script = "uid://hydp8bd62iyq"
