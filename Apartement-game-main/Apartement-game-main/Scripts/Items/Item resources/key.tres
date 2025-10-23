@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="item_resource" load_steps=4 format=3 uid="uid://cef8vii1e4hfg"]
+
+[ext_resource type="Texture2D" uid="uid://cv1lrc5cy85tx" path="res://icon.svg" id="1_j1nx6"]
+[ext_resource type="Script" uid="uid://c2j6aoe5a1tcg" path="res://Scripts/Items/Item_resource.gd" id="1_v2kk6"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_j1nx6"]
+
+[resource]
+script = ExtResource("1_v2kk6")
+id = 0
+name = "Key"
+model = SubResource("SphereMesh_j1nx6")
+image = ExtResource("1_j1nx6")
+metadata/_custom_type_script = "uid://c2j6aoe5a1tcg"

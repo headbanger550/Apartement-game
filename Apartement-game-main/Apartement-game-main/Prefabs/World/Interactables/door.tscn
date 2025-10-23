@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://vrcg2dc3slma"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dhub4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0fpgv"]
+size = Vector3(1.89209, 3.58472, 0.137817)
+
+[sub_resource type="BoxMesh" id="BoxMesh_enq86"]
+
+[node name="Door" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10788, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+shape = SubResource("BoxShape3D_dhub4")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." groups=["draggable"]]
+mass = 0.2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00219727, 0.0108643, 0.00531006)
+shape = SubResource("BoxShape3D_0fpgv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1.90416, 0, 0, 0, 3.56579, 0, 0, 0, 0.103396, 0, 0, 0)
+mesh = SubResource("BoxMesh_enq86")
+
+[node name="HingeJoint3D" type="HingeJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.11264, 0, 0)
+node_a = NodePath("../StaticBody3D")
+node_b = NodePath("../RigidBody3D")
+angular_limit/enable = true
+angular_limit/upper = 0.0
+angular_limit/lower = -2.05949

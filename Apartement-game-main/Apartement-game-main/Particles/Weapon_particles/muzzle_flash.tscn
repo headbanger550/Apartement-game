@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://ctf4sub81m68r"]
+
+[ext_resource type="ArrayMesh" uid="uid://c70if25as0q56" path="res://FBX file/Muzzle flashes/muzzle_flash_model_1.obj" id="1_ytf3w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37bq8"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.967908, 0.722382, 0, 1)
+emission_energy_multiplier = 7.83
+
+[sub_resource type="Gradient" id="Gradient_gifxn"]
+colors = PackedColorArray(0.959729, 0.794538, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lie4f"]
+gradient = SubResource("Gradient_gifxn")
+
+[sub_resource type="Curve" id="Curve_6ervr"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0514706, 1), 0.0, 0.0, 0, 0, Vector2(0.183824, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_sllrp"]
+curve = SubResource("Curve_6ervr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ml5ke"]
+gravity = Vector3(0, 0, 0)
+scale_min = 0.3
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_sllrp")
+color_ramp = SubResource("GradientTexture1D_lie4f")
+
+[sub_resource type="Animation" id="Animation_ytf3w"]
+resource_name = "diea"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_37bq8"]
+_data = {
+&"diea": SubResource("Animation_ytf3w")
+}
+
+[node name="muzzle_flash" type="GPUParticles3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_37bq8")
+emitting = false
+amount = 1
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_ml5ke")
+draw_pass_1 = ExtResource("1_ytf3w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_37bq8")
+}
+autoplay = "diea"

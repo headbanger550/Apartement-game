@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqjugau4swcjy"]
+
+[ext_resource type="Script" uid="uid://dhn8qlgpvj7yk" path="res://Scripts/World/Interactables/switch.gd" id="1_f1dpb"]
+[ext_resource type="Script" uid="uid://dycb21jnoj40k" path="res://Scripts/World/Interactables/switch_manager.gd" id="1_iang8"]
+[ext_resource type="Script" uid="uid://b11jr8h701gws" path="res://Scripts/World/Interactables/interactable.gd" id="2_djoqq"]
+[ext_resource type="Resource" uid="uid://dlwt2kenmj41r" path="res://Scripts/World/Interactables/Interactable resource/light.tres" id="3_ot850"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2jwj7"]
+size = Vector3(0.376465, 0.633362, 0.151917)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f1dpb"]
+
+[node name="Light switch" type="Node3D"]
+
+[node name="Lights" type="Node3D" parent="."]
+script = ExtResource("1_iang8")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
+light_color = Color(0.873484, 0.705177, 3.85046e-07, 1)
+light_energy = 6.172
+light_size = 0.413
+omni_range = 5.412
+script = ExtResource("2_djoqq")
+resource = ExtResource("3_ot850")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["switch"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44524, -0.00495923, 0)
+script = ExtResource("1_f1dpb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_2jwj7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.367074, 0, 0, 0, 0.626657, 0, 0, 0, 0.147031, 0, 0, 0)
+mesh = SubResource("BoxMesh_f1dpb")
+
+[connection signal="switch_switched" from="StaticBody3D" to="Lights" method="_on_static_body_3d_switch_switched"]

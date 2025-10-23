@@ -1,0 +1,252 @@
+[gd_scene load_steps=15 format=3 uid="uid://e0q2lsh1duir"]
+
+[ext_resource type="Script" uid="uid://buhlfww2k6rvw" path="res://Scripts/Player/Player.gd" id="1_t5con"]
+[ext_resource type="Script" uid="uid://dgdgsswd5213k" path="res://Scripts/Player/Weapons/weapon_switcher.gd" id="2_c4lgr"]
+[ext_resource type="PackedScene" uid="uid://cqmfe2ljbm6x2" path="res://Prefabs/Player/Weapons/BFR.tscn" id="3_hnr8y"]
+[ext_resource type="Resource" uid="uid://dwbopyo1b62r6" path="res://Scripts/Player/Weapons/revolver.tres" id="4_5virf"]
+[ext_resource type="Script" uid="uid://8nml46w8btu4" path="res://Scripts/Player/UI/inventory_manager.gd" id="5_5virf"]
+[ext_resource type="PackedScene" uid="uid://bqyog0fjl1j4m" path="res://Prefabs/UI/Player/Inventory/inventory.tscn" id="5_hnr8y"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rj4gf"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5virf"]
+
+[sub_resource type="Animation" id="Animation_5virf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/bfr revolver/Cylinder latch:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(4.37114e-08, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/bfr revolver:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hnr8y"]
+resource_name = "aim"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1998, 0.3996),
+"transitions": PackedFloat32Array(1, 1, 2.14355),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.685, 0.085, 0), Vector3(-6.43, 4.945, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1998, 0.3996),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.383972, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4rw4d"]
+resource_name = "reload"
+length = 0.55
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.35999998),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-8.625, 3.29, 6.845), Vector3(-8.625, 3.29, 6.845)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.36),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.226893, 0, 0), Vector3(-0.226893, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/bfr revolver/Cylinder latch:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.36, 0.49),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(4.37114e-08, 0, 0), Vector3(4.37114e-08, 0, 0), Vector3(0, 0, -1.09956)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/bfr revolver:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.36, 0.46, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.392699), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ip1bf"]
+resource_name = "shoot"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-6.43, 4.945, 0), Vector3(-1.4, 0.71, 1.165), Vector3(-6.43, 4.945, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.08, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.16064, 0, 0), Vector3(1.59872, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.01),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fire"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ip1bf"]
+_data = {
+&"RESET": SubResource("Animation_5virf"),
+&"aim": SubResource("Animation_hnr8y"),
+&"reload": SubResource("Animation_4rw4d"),
+&"shoot": SubResource("Animation_ip1bf")
+}
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_t5con"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("pickup_object_pos") groups=["player"]]
+script = ExtResource("1_t5con")
+lean_ammount = 20.0
+friction_lerp_amount = 20.0
+weapon_rot_amount = 0.05
+pickup_object_pos = NodePath("Head/Camera3D/object_pos")
+
+[node name="player_collider" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_rj4gf")
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.734134, 0)
+fov = 100.0
+
+[node name="Weapon_holder" type="Node3D" parent="Head/Camera3D"]
+script = ExtResource("2_c4lgr")
+
+[node name="BFR" parent="Head/Camera3D/Weapon_holder" node_paths=PackedStringArray("bullet_parent") instance=ExtResource("3_hnr8y")]
+transform = Transform3D(0.09, 0, 0, 0, 0.09, 0, 0, 0, 0.07, 0.601, -0.816, -1.119)
+weap_res = ExtResource("4_5virf")
+noise = SubResource("FastNoiseLite_5virf")
+bullet_parent = NodePath("Model/bfr revolver/Cylinder/Bullets")
+
+[node name="RayCast3D" parent="Head/Camera3D/Weapon_holder/BFR/Model/bfr revolver/Gun Frame/Barrel/Ejector handle/Ejector" index="0"]
+collide_with_bodies = false
+debug_shape_thickness = 5
+
+[node name="Cylinder latch" parent="Head/Camera3D/Weapon_holder/BFR/Model/bfr revolver" index="4"]
+transform = Transform3D(91.9905, 0, 0, 0, 91.9905, -4.266941e-06, 0, 4.0210334e-06, 97.6162, -1.57386e-17, 1.35001, 5.28161)
+
+[node name="AnimationPlayer" parent="Head/Camera3D/Weapon_holder/BFR" index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_ip1bf")
+}
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
+target_position = Vector3(0, 0, -10000)
+
+[node name="object_pos" type="Node3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.405858, -3.05822)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CapsuleMesh_t5con")
+
+[node name="Inventory manager" type="Node3D" parent="."]
+script = ExtResource("5_5virf")
+
+[node name="Inventory" parent="Inventory manager" instance=ExtResource("5_hnr8y")]
+
+[editable path="Head/Camera3D/Weapon_holder/BFR"]
+[editable path="Inventory manager/Inventory"]
